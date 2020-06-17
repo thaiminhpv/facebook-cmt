@@ -1,17 +1,15 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from main.stringDatabase import getWords
+
 import time
+import json
 
-
-def getNextLetter(message):
-    return message[0]
-
-
-email = "01688888703"
-password = "minhvoi03"
-linkToStrike = "https://www.facebook.com/thaiminhpv/posts/1165430377151066"
-message = "va"
-delay = 3  # seconds
+with open("configMachine.json") as json_file:
+    data = json.load(json_file)
+    email, password, linkToStrike, message, delay = [data[k] for k in ('email', 'password', 'linkToStrike', 'message', 'delay')]
+    if message is None:
+        message = ":) " * 1000
 
 option = Options()
 option.add_argument("--disable-infobars")
@@ -34,10 +32,10 @@ time.sleep(3)
 # jump to facebook lite to comment.
 driver.get(linkToStrike.replace("www", "m"))
 
-for i in range(10):
-    driver.find_element_by_id("composerInput").send_keys(getNextLetter(message))
+for word in getWords(message):
+    driver.find_element_by_id("composerInput").send_keys(word)
     driver.find_element_by_xpath("//button[@value='Post']").click()
-    time.sleep(delaj)
+    time.sleep(delay)
 
 
 driver.quit()
