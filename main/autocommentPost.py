@@ -1,6 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from main.stringDatabase import getWords
+from main.stringDatabase import getWords 
 
 import time
 import json
