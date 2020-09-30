@@ -4,7 +4,7 @@ import time
 
 email = "01688888703"
 password = "minhvoi03"
-linkToStrike = "https://www.messenger.com/t/100013475312740"
+linkToStrike = "https://www.messenger.com/t/3172666576099953"
 message = ":)"
 delay = 1  # seconds
 
@@ -27,6 +27,6 @@ driver.find_element_by_name("pass").send_keys(password)
 driver.find_element_by_id("loginbutton").click()
 
 for i in range(100):
-    driver.find_element_by_xpath("//div[@aria-label='Type a message...']").send_keys(message)
+    driver.find_element_by_xpath("//div[@aria-label='Type a message, @name...']").send_keys(message)
     driver.find_element_by_xpath("//a[@aria-label='Send']").click()
 driver.quit()
